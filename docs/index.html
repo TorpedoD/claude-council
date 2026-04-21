@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>claude-council — Multi-Agent Decision Framework</title>
+  <meta name="description" content="Pressure-test high-stakes decisions with a 5-advisor LLM Council. Peer review, forced debate, dual-chairman synthesis. Open-source Claude Code skill.">
+  <link rel="canonical" href="https://torpedod.github.io/claude-council/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="claude-council — Multi-Agent Decision Framework for Claude Code">
+  <meta property="og:description" content="Pressure-test high-stakes decisions with a 5-advisor LLM Council. Peer review, forced debate, dual-chairman synthesis with dissent preservation.">
+  <meta property="og:url" content="https://torpedod.github.io/claude-council/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="claude-council">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="claude-council — Multi-Agent Decision Framework for Claude Code">
+  <meta name="twitter:description" content="Pressure-test high-stakes decisions with a 5-advisor LLM Council. Peer review, forced debate, dual-chairman synthesis with dissent preservation.">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "claude-council",
+    "description": "Multi-agent decision framework for Claude Code — 5 advisors, peer review, forced debate, dual-chairman synthesis with dissent preservation",
+    "url": "https://torpedod.github.io/claude-council/",
+    "codeRepository": "https://github.com/TorpedoD/claude-council",
+    "programmingLanguage": "JavaScript",
+    "runtimePlatform": "Claude Code",
+    "license": "https://opensource.org/licenses/MIT",
+    "author": {
+      "@type": "Person",
+      "name": "TorpedoD",
+      "url": "https://github.com/TorpedoD"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent: #8b5cf6;
+      --accent-dim: rgba(139, 92, 246, 0.15);
+      --link: #79c0ff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.3rem; margin: 2rem 0 0.75rem; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+    p { margin-bottom: 1rem; }
+    .tagline { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem; }
+    .badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .badges img { height: 20px; }
+    code {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.15rem 0.4rem;
+      font-size: 0.9em;
+    }
+    pre {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+    pre code { background: none; border: none; padding: 0; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+    th, td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+    th { color: var(--text-muted); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .pipeline {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+    .pipeline span { color: var(--accent); }
+    .cta {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.6rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+    .cta:hover { opacity: 0.9; text-decoration: none; }
+    footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <h1>claude-council</h1>
+  <p class="tagline">Pressure-test high-stakes decisions with a 5-advisor LLM Council for Claude Code</p>
+
+  <div class="badges">
+    <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License" width="78" height="20"></a>
+    <a href="https://claude.ai/code"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-8A2BE2.svg" alt="Built for Claude Code" width="144" height="20"></a>
+    <a href="https://github.com/TorpedoD/claude-council/commits/main"><img src="https://img.shields.io/github/last-commit/TorpedoD/claude-council" alt="Last commit" width="130" height="20"></a>
+  </div>
+
+  <p><strong>claude-council</strong> is an open-source, multi-agent decision framework that runs entirely inside <a href="https://claude.ai/code">Claude Code</a>. One slash command runs your question through five structured thinking lenses, anonymized peer review, a forced adversarial debate when consensus is suspiciously clean, and dual-chairman synthesis that preserves minority dissent.</p>
+
+  <h2>Install</h2>
+  <pre><code>npx skills add TorpedoD/claude-council</code></pre>
+  <p>Requires <a href="https://claude.ai/code">Claude Code</a> (Pro plan or higher) and <a href="https://jqlang.github.io/jq/">jq</a> (<code>brew install jq</code>) for journal features.</p>
+
+  <h2>Usage</h2>
+  <pre><code>/claude-council I'm torn between staying at my job or joining a startup as cofounder</code></pre>
+  <p>Force a mode by appending <code>quick</code> or <code>deep</code> to your prompt.</p>
+
+  <h2>Three Adaptive Modes</h2>
+  <table>
+    <thead>
+      <tr><th>Mode</th><th>Advisors</th><th>Peer Review</th><th>Debate</th><th>Time</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Quick</strong></td><td>3</td><td>No</td><td>No</td><td>~30s</td></tr>
+      <tr><td><strong>Standard</strong></td><td>5</td><td>Yes (5)</td><td>If consensus &ge; 4/5</td><td>~90s</td></tr>
+      <tr><td><strong>Deep</strong></td><td>5 (expanded)</td><td>Yes</td><td>Always + Decision Science</td><td>~150s</td></tr>
+    </tbody>
+  </table>
+
+  <h2>How It Works</h2>
+  <div class="pipeline">
+    <span>1.</span> Triage &mdash; reject factual or obvious questions<br>
+    <span>2.</span> Journal lookup &mdash; find prior runs on similar questions<br>
+    <span>3.</span> Frame + Bias audit &mdash; workspace scan, cognitive bias detection<br>
+    <span>4.</span> Mode selection &mdash; Quick / Standard / Deep<br>
+    <span>5.</span> Fan-out &mdash; 3&ndash;5 parallel advisor agents<br>
+    <span>6.</span> Decision Science &mdash; structured comparison (Deep mode)<br>
+    <span>7.</span> Peer review &mdash; 5 anonymized reviewers + forced debate<br>
+    <span>8.</span> Dual chairman &mdash; consensus + dissent synthesis<br>
+    <span>9.</span> Generate outputs &mdash; HTML report + markdown transcript<br>
+    <span>10.</span> Journal append &mdash; JSONL write + outcome tracking
+  </div>
+
+  <h2>The Five Advisors</h2>
+  <table>
+    <thead>
+      <tr><th>Advisor</th><th>Role</th><th>Method</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Red Team</strong></td><td>Adversarial attack</td><td>Pre-mortem: assumes failure, traces root cause</td></tr>
+      <tr><td><strong>First Principles</strong></td><td>Assumption buster</td><td>Tree-of-Thoughts: 3 reframings from ground up</td></tr>
+      <tr><td><strong>Expansionist</strong></td><td>Option multiplier</td><td>Finds unlisted options, scores upside/effort</td></tr>
+      <tr><td><strong>Outsider</strong></td><td>Cross-domain wisdom</td><td>Channels an unrelated field's methodology</td></tr>
+      <tr><td><strong>Executor</strong></td><td>Feasibility check</td><td>OODA stage + RICE scoring + data audit</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Output</h2>
+  <p>Each run produces two files in the current directory:</p>
+  <ul style="margin-bottom:1rem;padding-left:1.5rem;">
+    <li><code>council-report-{ts}-q{sha}.html</code> &mdash; visual report with advisor cards, agreement grid, RICE table, debate transcript, and confidence header</li>
+    <li><code>council-transcript-{ts}-q{sha}.md</code> &mdash; full step-by-step transcript with anonymization map</li>
+  </ul>
+
+  <h2>Get Started</h2>
+  <pre><code>npx skills add TorpedoD/claude-council</code></pre>
+  <p>
+    <a class="cta" href="https://github.com/TorpedoD/claude-council">View on GitHub</a>
+  </p>
+
+  <footer>
+    <p>MIT License &middot; <a href="https://github.com/TorpedoD/claude-council">Source</a> &middot; <a href="https://github.com/TorpedoD/claude-council/issues">Issues</a> &middot; <a href="https://github.com/TorpedoD/claude-council#contributing">Contributing</a></p>
+  </footer>
+
+</body>
+</html>

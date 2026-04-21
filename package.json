@@ -1,12 +1,12 @@
 {
   "name": "claude-council",
   "version": "0.1.0",
-  "description": "5-advisor LLM Council for Claude Code — peer review, forced debate, dual-chairman synthesis with dissent preservation. Install via: npx skills add TorpedoD/claude-council",
+  "description": "5-advisor LLM Council for Claude Code — peer review, forced debate, dual-chairman synthesis with dissent preservation.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TorpedoD/claude-council.git"
   },
-  "homepage": "https://github.com/TorpedoD/claude-council",
+  "homepage": "https://torpedod.github.io/claude-council/",
   "bugs": {
     "url": "https://github.com/TorpedoD/claude-council/issues"
   },
