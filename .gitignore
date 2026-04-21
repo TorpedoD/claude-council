@@ -1,0 +1,12 @@
+.claude/
+.DS_Store
+node_modules/
+*.bak
+*.log
+.env
+.env.*
+dist/
+build/
+skills/claude-council/journal/council-log.jsonl
+skills/claude-council/journal/council-log.jsonl.*
+skills/claude-council/journal/persona-diffs/

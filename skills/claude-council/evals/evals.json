@@ -1,0 +1,103 @@
+{
+  "skill_name": "claude-council",
+  "runner_note": "These evals are designed for manual or automated execution via the claude-council skill. Run each eval's prompt through /claude-council, then verify assertions against the output files and journal.",
+  "evals": [
+    {
+      "id": 1,
+      "label": "Standard — career pivot",
+      "prompt": "Council this: I'm torn between staying at my stable $150k job or joining an early-stage startup offering a cofounder title and 5% equity. I've been at my current company 3 years, I have a mortgage, and the startup has $800k raised with about 2 years of runway. I'm 34. The startup is in B2B SaaS, which I know. I can't decide.",
+      "expected_output": "HTML report and markdown transcript produced. Verdict includes: five distinct advisor responses (Red Team, First Principles, Expansionist, Outsider, Executor), a peer review round, dual-chairman synthesis with dissent ledger, a clear recommendation, and 'one thing to do first'. RICE table in the Executor section. Bias audit flags (likely sunk cost, anchoring on current salary). Both output files saved to disk.",
+      "assertions": [
+        "html output file exists (council-report-*.html in $PWD or ~/Documents/claude-council-reports/)",
+        "transcript output file exists (council-transcript-*.md in same dir)",
+        "grep '{{' <html_path> returns zero matches (no unfilled tokens)",
+        "html contains 'RICE' (Executor RICE table rendered)",
+        "html contains 'Dissent Ledger' section",
+        "html contains 'BIAS FLAGS' or 'Pre-council bias scan' (bias audit ran)",
+        "html contains 'Council confidence:' header",
+        "journal/council-log.jsonl line count increased by 1 after run"
+      ]
+    },
+    {
+      "id": 2,
+      "label": "Quick — MVP tooling",
+      "prompt": "I need you to stress-test this quick: should I build my MVP with React + Node or just use Webflow + Airtable? I'm a solo founder. I can code but no-code would be way faster. I want to serve SMBs with a project management tool. Launch is 6 weeks away. quick",
+      "expected_output": "Quick mode triggered (user said 'quick'). Three advisors only (Red Team, Executor, First Principles). Single chairman, no peer review, no debate round, no dissent ledger. Output files produced. Faster than Standard — should complete in ~30s. Verdict recommends a clear path. Build option comparison with reversibility noted.",
+      "assertions": [
+        "html output file exists",
+        "transcript output file exists",
+        "grep '{{' <html_path> returns zero matches",
+        "transcript or html contains 'Quick' mode label",
+        "html does NOT contain 'Dissent Ledger' (Quick skips this)",
+        "html does NOT contain 'Peer Reviews' section with content (Quick skips peer review)",
+        "html does NOT contain 'Debate Round' section (Quick skips debate)",
+        "html does NOT contain 'BIAS FLAGS' (Quick skips bias audit)",
+        "advisor count in transcript is exactly 3 (Red Team, Executor, First Principles)"
+      ]
+    },
+    {
+      "id": 3,
+      "label": "Deep — startup death spiral",
+      "prompt": "War room this: we're 3 months from running out of money. We have two options — raise a bridge round from existing investors (they're lukewarm but might do $300k) or cut burn by 60% and try to extend runway 9 months while hunting for revenue. We have 8 employees. If we cut, we lose 4 people including one who holds key customer relationships. The product is working but sales are slow. This decision affects 8 families and I haven't slept in 3 days. deep",
+      "expected_output": "Deep mode triggered (user said 'deep', plus high-stakes markers). All 5 advisors run with expanded Tree-of-Thoughts for First Principles and Expansionist. Forced debate runs. Decision Science pass runs (Claude fallback if Codex unavailable). Dual chairman + dissent ledger. Bias audit flags emotional framing and planning fallacy. Confidence header visible in HTML. Executor marks plan as DRAFT if missing data. Full transcript with all sections.",
+      "assertions": [
+        "html output file exists",
+        "transcript output file exists",
+        "grep '{{' <html_path> returns zero matches",
+        "transcript contains 'Deep' mode label",
+        "html contains 'Debate Round' section (Deep always triggers debate)",
+        "html contains 'Dissent Ledger' section",
+        "html contains 'BIAS FLAGS' or 'Pre-council bias scan'",
+        "html contains 'Decision Science' matrix section",
+        "html contains 'Council confidence:' header",
+        "transcript contains all 5 advisor labels (Red Team, First Principles, Expansionist, Outsider, Executor)"
+      ]
+    },
+    {
+      "id": 4,
+      "label": "Triage rejection — factual question",
+      "prompt": "What is the capital of France?",
+      "expected_output": "Council is rejected at triage. Claude answers directly ('Paris') without running any advisors, writing any files, or appending to the journal.",
+      "assertions": [
+        "NO html output file written",
+        "NO transcript output file written",
+        "journal/council-log.jsonl line count unchanged after run",
+        "response contains 'Paris' (direct answer given)",
+        "response does NOT contain 'Red Team' or 'Executor' (no advisors ran)"
+      ]
+    },
+    {
+      "id": 5,
+      "label": "Journal write + pre-run read",
+      "prompt": "Council this: should I hire a full-time content writer or contract with a freelancer for my SaaS blog? I've tried both once before. Standard.",
+      "expected_output": "First run: journal appended (line count +1). Second run with same question: prior council context surface in the framed question (journal_search.sh finds a match and outputs a one-line summary). The framed question in the transcript shows 'PRIOR:' section populated.",
+      "assertions": [
+        "after first run: journal/council-log.jsonl line count = 1 (or prior+1)",
+        "after second run with same/similar question: transcript contains 'Prior council context' or 'PRIOR:' field populated",
+        "second run journal line count = 2 (or prior+2)"
+      ]
+    },
+    {
+      "id": 6,
+      "label": "Outcome update via /claude-council outcome",
+      "prompt": "After running eval id:6, invoke: /claude-council outcome <sha1_from_run> went_with_freelancer_worked_well",
+      "expected_output": "The matching journal entry's 'outcome' field is updated from null to 'went_with_freelancer_worked_well'. No new council runs. No new files written.",
+      "assertions": [
+        "journal/council-log.jsonl line count unchanged (no new entry added)",
+        "target journal entry's outcome field changed from null to 'went_with_freelancer_worked_well'",
+        "response confirms the update with the sha1 and outcome value"
+      ]
+    },
+    {
+      "id": 7,
+      "label": "Escalation prompt — low-confidence Standard",
+      "prompt": "Council this: I need to decide whether to pivot my product from B2C to B2B. I have 200 B2C users and one interested enterprise prospect but no data on either segment's LTV. My runway is 10 months.",
+      "expected_output": "Standard mode runs. Due to missing data (no LTV, one data point for B2B), Executor marks plan DRAFT and multiple advisors output confidence: low. Chairman confidence is low. AskUserQuestion fires asking whether to escalate to Deep mode.",
+      "assertions": [
+        "transcript contains 'STATUS: DRAFT' from Executor (missing data triggers it)",
+        "AskUserQuestion is invoked asking about Deep mode escalation",
+        "html contains 'Council confidence: low' in verdict header"
+      ]
+    }
+  ]
+}
