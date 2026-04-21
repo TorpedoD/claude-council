@@ -7,26 +7,26 @@
 [![Last commit](https://img.shields.io/github/last-commit/TorpedoD/claude-council)](https://github.com/TorpedoD/claude-council/commits/main)
 [![Issues](https://img.shields.io/github/issues/TorpedoD/claude-council)](https://github.com/TorpedoD/claude-council/issues)
 
-**claude-council** is an open-source, multi-agent decision framework that runs **entirely inside [Claude Code](https://claude.ai/code)**. One slash command — `/claude-council` — runs your question through five structured thinking lenses, anonymized peer review, a forced adversarial debate when consensus is suspiciously clean, and dual-chairman synthesis that preserves minority dissent. Three adaptive modes (Quick / Standard / Deep) keep cost bounded; a persistent JSONL journal enables learning across runs. Install with `npx github:TorpedoD/claude-council add`. MIT licensed.
+**claude-council** is an open-source, multi-agent decision framework that runs **entirely inside [Claude Code](https://claude.ai/code)**. One slash command — `/claude-council` — runs your question through five structured thinking lenses, anonymized peer review, a forced adversarial debate when consensus is suspiciously clean, and dual-chairman synthesis that preserves minority dissent. Three adaptive modes (Quick / Standard / Deep) keep cost bounded; a persistent JSONL journal enables learning across runs. MIT licensed.
 
 ---
 
 ## Install
 
 ```bash
-npx github:TorpedoD/claude-council add
+npx skills add TorpedoD/claude-council
 ```
 
-This copies the `claude-council` skill into `~/.claude/skills/`. No npm publish, no registry — pulls straight from GitHub.
+This installs the `claude-council` skill into `~/.claude/skills/` via the [skills](https://www.npmjs.com/package/skills) CLI.
 
-## Prerequisites
+### Prerequisites
 
 | Tool | Install |
 |------|---------|
 | [Claude Code](https://claude.ai/code) | Pro plan or higher |
 | [jq](https://jqlang.github.io/jq/) | `brew install jq` (required for journal) |
 
-## Verify
+### Verify
 
 Open Claude Code and type `/claude-council` — the council should prompt you for a decision.
 
@@ -75,20 +75,20 @@ After 5+ runs with recorded outcomes, surface persona calibration patterns:
 ## How It Works
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                        10-Step Pipeline                         │
-├─────────────────────────────────────────────────────────────────┤
-│  1. Triage         — reject factual/obvious questions           │
-│  2. Journal lookup  — find prior runs on similar questions      │
-│  3. Frame + Bias    — workspace scan, cognitive bias audit      │
-│  4. Mode selection  — Quick / Standard / Deep                   │
-│  5. Fan-out         — 3-5 parallel advisor agents               │
-│  6. Decision Science— Codex/Claude structured comparison (Deep) │
-│  7. Peer review     — 5 anonymized reviewers + forced debate    │
-│  8. Dual chairman   — consensus + dissent synthesis             │
-│  9. Generate outputs— HTML report + markdown transcript         │
-│ 10. Journal append  — atomic JSONL write + outcome tracking     │
-└─────────────────────────────────────────────────────────────────┘
++------------------------------------------------------------------+
+|                        10-Step Pipeline                           |
++------------------------------------------------------------------+
+|  1. Triage          - reject factual/obvious questions            |
+|  2. Journal lookup  - find prior runs on similar questions        |
+|  3. Frame + Bias    - workspace scan, cognitive bias audit        |
+|  4. Mode selection  - Quick / Standard / Deep                     |
+|  5. Fan-out         - 3-5 parallel advisor agents                 |
+|  6. Decision Science- Codex/Claude structured comparison (Deep)   |
+|  7. Peer review     - 5 anonymized reviewers + forced debate      |
+|  8. Dual chairman   - consensus + dissent synthesis               |
+|  9. Generate outputs- HTML report + markdown transcript           |
+| 10. Journal append  - atomic JSONL write + outcome tracking       |
++------------------------------------------------------------------+
 ```
 
 ## The Five Advisors
@@ -127,7 +127,7 @@ This project draws on research and prior work from:
 ## Uninstall
 
 ```bash
-npx github:TorpedoD/claude-council remove claude-council
+npx skills remove claude-council
 ```
 
 ## Contributing

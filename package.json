@@ -1,20 +1,7 @@
 {
   "name": "claude-council",
   "version": "0.1.0",
-  "description": "5-advisor LLM Council for Claude Code — peer review, forced debate, dual-chairman synthesis with dissent preservation. Skills installer, run via npx, no publish required.",
-  "type": "module",
-  "bin": {
-    "claude-council": "./bin/cli.mjs"
-  },
-  "files": [
-    "bin",
-    "skills",
-    "README.md",
-    "LICENSE"
-  ],
-  "engines": {
-    "node": ">=16.7.0"
-  },
+  "description": "5-advisor LLM Council for Claude Code — peer review, forced debate, dual-chairman synthesis with dissent preservation. Install via: npx skills add TorpedoD/claude-council",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TorpedoD/claude-council.git"
